@@ -1,0 +1,33 @@
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+    <div>
+        <div class="text-center">
+            <!--<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a2.jpg">-->
+            <img id="facebook_display" ng-show="model.extraData != 'Twitter'" class="img-circle" ng-src="https://graph.facebook.com/v2.5/{{ modelexId }}/picture" alt="image">
+            <img id="twitter_display" ng-show="model.extraData == 'Twitter'" class="img-circle" ng-src="{{ modelexId }}" alt="image">
+        </div>
+        <h3>Register to IN+</h3>
+        <p>Create account to see it in action.</p>
+        <form class="m-t" role="form" ng-submit="registerEx()">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="UserName" ng-model="form.UserName" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="FirstName" ng-model="form.FirstName" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="LastName" ng-model="form.LastName" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" ng-model="form.Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" ng-model="form.Password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirm Password" ng-model="form.ConfirmPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+        </form>
+        <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+    </div>
+</div>

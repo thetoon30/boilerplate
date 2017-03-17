@@ -1,0 +1,146 @@
+<div class="ibox-content m-b-sm border-bottom">
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label">EmployeeCode</label>
+                <input type="text" ng-model="search.EmployeeCode" value="" placeholder="EmployeeCode" class="form-control">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label">UserName</label>
+                <input type="text" ng-model="search.UserName" value="" placeholder="UserName" class="form-control">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <input type="text" ng-model="search.FullName" value="" placeholder="Name" class="form-control">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label">Role</label>
+                <select class="form-control" ng-model="search.Role">
+                    <option value="">Select Role</option>
+                    <option ng-repeat="role in roles" value="{{ role.Name }}">{{ role.Name }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <button type="button" class="btn btn-outline btn-success pull-right" style="margin-top:20%" ng-click="searchUser()">
+                <i class="fa fa-search"></i> Search
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12" ng-class="{'col-lg-9': profile, 'col-lg-12': !profile}">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="col-md-12 hidden-sm hidden-xs text-right">
+                    Entries:
+                    <button class="btn btn-white btn-sm rowsort dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                        {{ total }}
+                        <i class="fa fa-chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu animated fadeInLeft m-t-xs pull-right">
+                        <li ng-repeat="total in totals" ng-click="selectTotal(total)"><a href="#">{{ total }}</a></li>
+                    </ul>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>EmployeeCode</th>
+                                <th>UserName</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>DeviceId</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in users | filter:user">
+                                <td>{{ dataStart + ($index + 1) }}</td>
+                                <td>{{ user.EmployeeCode }}</td>
+                                <td><a ng-click="showDetail(user)">{{ user.UserName }}</a></td>
+                                <td>{{ user.FullName }}</td>
+                                <td>{{ user.Role }}</td>
+                                <td>{{ user.DeviceId }}</td>
+                                <td>
+                                    <a class="action pull-right clickable" data-toggle="dropdown">
+                                        Action
+                                        <i class="pull-right fa fa-caret-down"></i>
+                                        <ul class="dropdown-menu">
+                                            <li><a ui-sref="user.edit({ id: user.Id })"><i class="fa fa-pencil"></i> Edit </a></li>
+                                            <li><a confirmed-click="deleteUser(user.Id)" ng-confirm-click="Are you sure to delete?"><i class="fa fa-trash"></i> Delete </a></li>
+                                        </ul>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align:center;">
+                    <div class="btn-group">
+                        <button class="btn btn-white" type="button" ng-click="selectPrevious()"><i class="fa fa-chevron-left"></i></button>
+                        <button ng-repeat="paging in pagings" class="btn btn-white" ng-class="isActive(paging)" ng-click="selectPage(paging)">{{ paging }}</button>
+                        <button class="btn btn-white" type="button" ng-click="selectNext()"><i class="fa fa-chevron-right"></i> </button>
+                    </div>
+                    <div class="pull-right"><span><strong>total : {{totalUser}}</strong></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 animated fadeInRight" ng-show="profile">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Profile Detail</h5>
+            </div>
+                <div>
+                    <div class="ibox-content no-padding border-left-right"></div>
+                    <div class="ibox-content profile-content">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <a class="pull-left user-thumbs">
+                                    <img src="img/profile.jpg" class="img-circle" alt="image">
+                                </a>
+                            </div>
+                            <div class="col-md-8 col-sm-12 profile-information">
+                                <h4><strong>{{ profile.FullName }}</strong></h4>
+                                <div>
+                                    <h5>{{ profile.Role }}</h5>
+                                    <br>
+                                    <p><i class="fa fa-user"></i>{{ profile.Gender }}</p>
+                                    <p><i class="fa fa-envelope"></i>{{ profile.Email }}</p>
+                                    <p><i class="fa fa-phone"></i>{{ profile.PhoneNumber }}</p>
+                                    <p><i class="fa fa-map-marker"></i>Bangkok, Thailand</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 profile-information">
+                                <h4><strong>Change Role</strong></h4>
+                                <form name="roleForm">
+                                    <p ng-repeat="role in roles"><input type="radio" name="role" value="{{role.Name }}" ng-model="formDetail.checkrole" /> {{ role.Name }}</p>
+                                    <p><input type="button" ng-click="saveRole(profile.UserName)" class="btn btn-primary" value="SaveChanges" /></p> 
+                                    <p ng-show="isRoleSaving">
+                                        <span><font color="green">Success</font></span>
+                                    </p>
+                                    <!--<p ng-show="roleErrors != null">
+                                        <span ng-repeat="error in roleErrors"><font color="red">* {{ error[0] }}</font></span>
+                                    </p>-->
+                                    <p ng-show="roleErrors != null">
+                                        <span><font color="red">* Not successful</font></span>
+                                    </p>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

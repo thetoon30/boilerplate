@@ -1,0 +1,107 @@
+<div class="row">
+    <div class="col-lg-7">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>
+                    Add User
+                </h5>
+                <div class="ng-scope" ibox-tools="">
+                    <div class="ibox-tools dropdown" dropdown="">
+                        <a ng-click="showhide()"> <i class="fa fa-chevron-up"></i></a>
+                        <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" href="" dropdown-toggle="">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a ng-click="closebox()"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form class="p-lg form-horizontal" name="add_form" novalidate ng-submit="saveAddUser()">
+                            <fieldset>
+                                <div class="col-sm-12">
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label">EmployeeCode</label>
+                                        <div class="col-sm-4"><input class="form-control" type="text" ng-model="form.EmployeeCode" name="EmployeeCode" required></div>
+                                        <div class="col-sm-5"><span class="text-danger require" ng-show="add_form.EmployeeCode.$error.required">Required !</span></div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label">UserName</label>
+                                        <div class="col-sm-4"><input class="form-control" type="text" ng-model="form.UserName" name="UserName" required></div>
+                                        <div class="col-sm-5"><span class="text-danger require" ng-show="add_form.UserName.$error.required">Required !</span></div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label">Roles</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" ng-model="form.Role" name="Role" required>
+                                                <option ng-repeat="role in roles" value="{{ role.Name }}">{{ role.Name }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-5"><span class="text-danger require" ng-show="add_form.Role.$error.required">Required !</span></div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label">FirstName</label>
+                                        <div class="col-sm-4"><input class="form-control" type="text" ng-model="form.FirstName" name="FirstName" required></div>
+                                        <div class="col-sm-5"><span class="text-danger require" ng-show="add_form.FirstName.$error.required">Required !</span></div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label">LastName</label>
+                                        <div class="col-sm-4"><input class="form-control" type="text" ng-model="form.LastName" name="LastName" required></div>
+                                        <div class="col-sm-5"><span class="text-danger require" ng-show="add_form.LastName.$error.required">Required !</span></div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label">Gender</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" ng-model="form.Gender" name="Gender" required>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-5"><span class="text-danger require" ng-show="add_form.Gender.$error.required">Required !</span></div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label">PhoneNumber</label>
+                                        <div class="col-sm-4"><input class="form-control" type="text" ng-model="form.PhoneNumber" name="PhoneNumber" required></div>
+                                        <div class="col-sm-5"><span class="text-danger require" ng-show="add_form.PhoneNumber.$error.required">Required !</span></div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label">Email</label>
+                                        <div class="col-sm-4"><input class="form-control" type="email" ng-model="form.Email" name="Email" required></div>
+                                        <div class="col-sm-5" ng-show="add_form.Email.$invalid">
+                                            <span class="text-danger require" ng-show="add_form.Email.$error">Please input a valid email address</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label">Password</label>
+                                        <div class="col-sm-4"><input class="form-control" type="password" ng-model="form.Password" name="Password" required></div>
+                                        <div class="col-sm-5"><span class="text-danger require" ng-show="add_form.Password.$error.required">Required !</span></div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label">Confirm Password</label>
+                                        <div class="col-sm-4"><input class="form-control" type="password" ng-model="form.ConfirmPassword" name="ConfirmPassword" required></div>
+                                        <div class="col-sm-5"><span class="text-danger require" ng-show="add_form.ConfirmPassword.$error.required">Required !</span></div>
+                                    </div>
+
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-3 control-label"></label>
+                                        <div class="col-sm-2"><button class="btn btn-primary" type="submit" ng-disabled="add_form.$invalid">Save Change</button></div>
+                                        <div class="col-sm-8"></div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

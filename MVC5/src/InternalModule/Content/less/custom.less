@@ -1,0 +1,94 @@
+/*----- bootstrap overwrite -----*/
+.table-responsive { overflow-x:inherit;}
+.inmodal .modal-header { padding: 15px;}
+
+/*----- universal -----*/
+a , a:hover , a:active , a:focus , a.active { outline: none;}
+button , button:hover , button:focus , button:active , button.active { outline: none;}
+.clickable { cursor: pointer;}
+.v-middle { vertical-align: middle !important;}
+
+/*----- side nav -----*/
+.Logo-main {padding: 15px; display: block; border-bottom: solid 1px #666;}
+.Logo-main img { max-width: 70%; max-height: 100px; }
+.nav-header { padding:25px; }
+
+/*----- table ------*/
+table.v-middle th , table.v-middle td { vertical-align: middle !important;}
+table .user-thumbs  img { width: 30px; height: 30px;}
+table .fa-caret-down { color: #ccc; padding-left: 3px; line-height: 1.4;}
+table .edit { display: block; font-size: 25px; color: #676a6c; }
+table .edit:hover { color: #000;}
+table .fa+.fa{ margin:0 3px;}
+table tr.special td { background-color: #f7fdfc;}
+table .open { position: relative;}
+table .action {display: block;}
+table .dropdown-menu { top: 30px;}
+table .action { color: #676a6c;}
+
+.table-controlpanel { padding-bottom: 20px;}
+.table-controlpanel .search{ width: 100%;}
+.table-controlpanel .form-control { height: 30px;}
+.table-controlpanel .rowsort { padding-left: 7px; padding-right: 7px; margin-left: 5px;}
+.table-controlpanel .rowsort i{ margin-left: 5px;}
+.table-controlpanel .create  { margin-right:10px; margin-bottom: 0; width: 100%;}
+.table-controlpanel .dropdown-menu { left:inherit; right: 0;}
+
+.modal-role form { border-bottom: dotted 1px #ddd; padding-bottom: 25px; margin-bottom: 25px;}
+.modal-role input {font-size: 1em;}
+.modal-role textarea { font-size: 1em; resize:none; margin-top: 10px;  height: 90px;}
+.modal-role .tabs-container {}
+.modal-role .selected-box { padding-top: 10px;}
+.modal-role .selected-box .label { margin: 0 5px 5px 0; cursor: pointer; display: inline-block; }
+.modal-role .selected-box .label .fa { padding-left: 5px;}
+
+
+/*---- profile box -----*/
+.profile-content .user-thumbs { width: 100%; text-align: center;}
+.profile-content .user-thumbs img { width:100% ; max-width: 200px;}
+.profile-information p { margin-bottom: 5px;}
+.profile-information i { padding-right: 10px; width: 25px; text-align: center;}
+.profile-desc { margin-top: 15px;}
+
+/*---- contact box ----*/
+.contactbox-information p { margin-bottom: 10px; padding-top: 10px; border-top: dotted 1px #ddd;}
+.contactbox-information i { padding-right: 10px; width: 25px; text-align: center;}
+.contact-box .btn-group { margin-top: 10px;}
+.contact-box .m-t-xs { margin-top: 10px;}
+.contact-box h3 { margin: 15px 0 5px 0;}
+.contact-box .subname { color: #aaa; margin-top: 0;}
+.contact-box .image { margin-bottom: 10px;}
+.contact-box-custom { text-align: center;}
+
+/*---- box header ----*/
+.hd-custom-tran-1 {padding: 0 15px;}
+.hd-custom-tran-1 h2{ float: left; margin:0;}
+.hd-custom-tran-1 .text-indicator { padding-right: 10px;}
+
+
+@media (max-width: 992px) { }
+@media (max-width: 768px)  { 
+/*--- table ----*/
+.table-controlpanel > div { margin-bottom: 10px;}
+.table-controlpanel .btn-group { width: 100%;}
+.table-controlpanel .create { margin-right: 0;}
+
+}
+@media (max-width: 480px)  {
+
+/*--- main ----*/
+#page-wrapper { padding: 0 10px;}	
+.modal-body { padding:15px 15px 15px;}
+.tabs-container .panel-body { padding:20px 10px;}
+/*---- profile-content -----*/
+.profile-content .user-thumbs { margin-bottom: 20px;}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9
+	{ padding:0 5px;}
+
+/*---- box-header ---*/
+.hd-custom-tran-1 {padding: 0 5px;}	
+
+
+
+}
+

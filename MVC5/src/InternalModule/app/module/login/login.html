@@ -1,0 +1,34 @@
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
+        <div>
+            <h1 class="logo-name">IN+</h1>
+        </div>
+        <h3>Welcome to IN+</h3>
+        <p>
+            Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+        </p>
+        <p>Login in. To see it in action.</p>
+        <form class="m-t" ng-submit="login()">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="form.userName" placeholder="Username" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" ng-model="form.passWord" placeholder="Password" required="">
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+            <a ui-sref="forgot_password"><small>Forgot password?</small></a>
+            <p class="text-muted text-center"><small>Do not have an account?</small></p>
+            <div class="form-group">
+                <a class="btn btn-sm btn-white btn-block" ui-sref="register">Create an account</a>
+            </div>
+        </form>
+        <form>
+            <div class="form-group">
+                <button type="button" ng-click="fbLogin()" class="btn btn-info block full-width m-b">Login via facebook</button>
+                <button type="button" ng-click="twLogin()" class="btn btn-success block full-width m-b">Login via twitter</button>
+            </div>
+        </form>
+
+        <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+﻿
+@{
+    Layout = null;
+    var fbAppId = System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"];
+}
+<!--
+* INSPINIA - Responsive Admin Theme
+* Copyright 2015 Webapplayers.com
+* Version 2.3
+*
+-->
+
+<!DOCTYPE html>
+<html ng-app="inspinia">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+
+    <!-- Google Open Sans -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css --
+    <!-- Font awesome -->
+    @Styles.Render("~/font-awesome/css")
+
+    <!-- Bootstrap -->
+    @Styles.Render("~/Content/css")
+</head>
+
+<!-- ControllerAs syntax -->
+<!-- Main controller with serveral data used in Inspinia theme on diferent view -->
+<body ng-controller="MainCtrl as main">
+
+    <!-- Main view  -->
+    <div ui-view></div>
+
+    <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.css")" rel="stylesheet" type="text/css" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/plugins/slimScroll")
+    @Scripts.Render("~/bundles/inspinia")
+    @Scripts.Render("~/bundles/angular")
+    @Styles.Render("~/Content/less")
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script>
+    @Scripts.Render("~/bundles/ng-script")
+    <script src="~/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="~/js/plugins/dataTables/angular-datatables.js"></script>
+    <script src="~/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="~/js/plugins/dataTables/angular-datatables.util.js"></script>
+    <script src="~/js/plugins/dataTables/angular-datatables.options.js"></script>
+    <script src="~/js/plugins/dataTables/angular-datatables.instances.js"></script>
+    <script src="~/js/plugins/dataTables/angular-datatables.factory.js"></script>
+    <script src="~/js/plugins/dataTables/angular-datatables.renderer.js"></script>
+    <script src="~/js/plugins/dataTables/angular-datatables.directive.js"></script>
+    <script src="~/app/module/helpers.js"></script>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- jQuery and Bootstrap -->
+    @*<script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+        <script src="bower_components/slimScroll/jquery.slimscroll.min.js"></script>
+        <script src="bower_components/PACE/pace.min.js"></script>
+
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>*@
+
+    <!-- Angular Dependiences -->
+    <!--                      -->
+    <!--                      -->
+    <!--                      -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <!-- Custom and plugin javascript -->
+    <!-- Angular App Script -->
+    @*<script src="app/component/app.js"></script>
+        <script src="app/component/config.js"></script>
+        <script src="app/component/directives.js"></script>
+        <script src="app/component/controllers.js"></script>*@
+
+    <!-- endbuild -->
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '@fbAppId',
+                status: true,
+                cookie: true,
+                oauth: true
+            });
+
+            // Additional initialization code here
+        };
+
+        // Load the SDK Asynchronously
+        (function (d) {
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+    </script>
+</body>
+</html>
+

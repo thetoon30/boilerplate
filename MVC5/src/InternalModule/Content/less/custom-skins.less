@@ -1,0 +1,121 @@
+/*=== custom skin 1 - NAME : facebook tone ===*/
+
+/*---- main colors ----*/
+@custom-skin-1-color-1: #f4f6fa; // main background
+@custom-skin-1-color-2: #9ea6b9;
+@custom-skin-1-color-3: #9ea6b9; // side bar "a" color
+
+/*---- theme color (from dark to light) ----*/
+@custom-skin-1-color-4: #344466; // side bar wallpaper // basic "a:hover:focus:active.active" 
+@custom-skin-1-color-5: #415e9b; // basic "a" , primary (button , label , badges)
+@custom-skin-1-color-6: #3277c5; // info (button , label , badges)
+@custom-skin-1-color-7: #dae3f7;
+@custom-skin-1-color-8: #fcfdff;
+
+/*---- button ----*/
+.custom-skin-1 .btn-primary { background: @custom-skin-1-color-5; border:darken(@custom-skin-1-color-5, 7%) !important;}
+.custom-skin-1 .btn-primary:hover,
+.custom-skin-1 .btn-primary:focus,
+.custom-skin-1 .btn-primary:active,
+.custom-skin-1 .btn-primary.active, {background:darken(@custom-skin-1-color-5, 10%)}
+.custom-skin-1 .open .dropdown-toggle.btn-primary {background: #555;}
+.custom-skin-1 .label-primary, .custom-skin-1 .badge-primary {background: @custom-skin-1-color-5; }
+.custom-skin-1 .panel-primary { border: solid 1px @custom-skin-1-color-5;}
+.custom-skin-1 .panel-primary > .panel-heading {background: @custom-skin-1-color-5;}
+.custom-skin-1 .text-info { color: @custom-skin-1-color-5;}
+
+.custom-skin-1 .btn-info { background: @custom-skin-1-color-6; border:darken(@custom-skin-1-color-6, 7%) !important;}
+.custom-skin-1 .btn-info:hover,
+.custom-skin-1 .btn-info:focus,
+.custom-skin-1 .btn-info:active,
+.custom-skin-1 .btn-info.active, {background:darken(@custom-skin-1-color-6, 10%)}
+.custom-skin-1 .open .dropdown-toggle.btn-info {background: #555;}
+.custom-skin-1 .label-info, .custom-skin-1  .badge-info {background: @custom-skin-1-color-6;}
+.custom-skin-1 .panel-info { border: solid 1px @custom-skin-1-color-6;}
+.custom-skin-1 .panel-info > .panel-heading {background: @custom-skin-1-color-6;}
+.custom-skin-1 .text-info { color:@custom-skin-1-color-6 ;}
+
+/*---- basic ----*/
+body.custom-skin-1 {  background: @custom-skin-1-color-4;}
+.custom-skin-1 #page-wrapper {  background: @custom-skin-1-color-1;}
+.custom-skin-1 .text-navy {color:@custom-skin-1-color-5;}
+.custom-skin-1 a {color:@custom-skin-1-color-5;}
+.custom-skin-1 a:hover,
+.custom-skin-1 a:focus,
+.custom-skin-1 a:active,
+.custom-skin-1 a.active {color:@custom-skin-1-color-4;}
+.forum-item.active a.forum-item-title {color:@custom-skin-1-color-5;}
+
+/*---- main side nav ----*/
+.custom-skin-1  .Logo-main { border-bottom: solid 1px darken(@custom-skin-1-color-4, 15%);}
+.custom-skin-1  .Logo-main:hover { background: darken(@custom-skin-1-color-4, 6%) }
+.custom-skin-1 .nav > li.active {background: darken(@custom-skin-1-color-4, 6%); border-left: solid 4px @custom-skin-1-color-5;}
+.custom-skin-1 .nav > li > a {  color: @custom-skin-1-color-3;}
+.custom-skin-1 .nav > li.active > a {  color: #fff;}
+.custom-skin-1 .navbar-default .nav > li > a:hover,
+.custom-skin-1 .navbar-default .nav > li > a:focus { background: darken(@custom-skin-1-color-4, 6%);}
+.custom-skin-1 .spin-icon {  background: @custom-skin-1-color-5 !important;}
+.custom-skin-1 .nav-header {  background: @custom-skin-1-color-4;}
+.custom-skin-1 .nav-header a.dropdown-toggle {  color: #fff;}
+.custom-skin-1 .nav-header a.dropdown-toggle .text-muted {  color: #fff;}
+body.custom-skin-1.mini-navbar .nav-header {background: @custom-skin-1-color-4;}
+.custom-skin-1.mini-navbar .nav-second-level {  background: @custom-skin-1-color-4;}
+
+
+/*--- tabs ---*/
+.custom-skin-1 .tabs-container .nav > li.active { border-left:inherit; background: inherit;}
+
+
+/*---- nav top bar ----*/
+.fixed-nav.custom-skin-1 .navbar-fixed-top { }
+.custom-skin-1 .navbar-minimalize ,
+.custom-skin-1 .navbar-minimalize:hover,
+.custom-skin-1 .navbar-minimalize.active,
+.custom-skin-1 .navbar-minimalize:active,
+.custom-skin-1 .navbar-minimalize:focus { color: #fff !important;}
+.custom-skin-1 .dashboard-header {  background: transparent;}
+.custom-skin-1 .navbar-default .nav > li > a:hover,
+.custom-skin-1 .navbar-default .nav > li > a:focus { background: darken(@custom-skin-1-color-4, 2%);  color: #fff;}
+.custom-skin-1 .nav.nav-tabs > li.active > a {  color: #555;}
+
+/*---- spinner ----*/
+.sk-spinner-rotating-plane.sk-spinner ,
+.sk-spinner-double-bounce .sk-double-bounce1,
+.sk-spinner-double-bounce .sk-double-bounce2,
+.sk-spinner-wave div , 
+.sk-spinner-wandering-cubes .sk-cube1,
+.sk-spinner-wandering-cubes .sk-cube2,
+.sk-spinner-pulse.sk-spinner,
+.sk-spinner-chasing-dots .sk-dot1,
+.sk-spinner-chasing-dots .sk-dot2 ,
+.sk-spinner-three-bounce div ,
+.sk-spinner-circle .sk-circle::before ,
+.sk-spinner-cube-grid .sk-cube,
+.sk-spinner-fading-circle .sk-circle::before { background-color: @custom-skin-1-color-5;}
+
+/*---- pace -----*/
+.custom-skin-1 .pace .pace-progress { background: @custom-skin-1-color-5;}
+
+/*---- table ----*/
+.custom-skin-1 table tr.special td {background: @custom-skin-1-color-8;}
+.custom-skin-1 table .action { color: #676a6c;}
+
+/*---- group list ----*/
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {background: @custom-skin-1-color-5;}
+
+/*--- small chat ----*/
+.custom-skin-1 .open-small-chat { background: @custom-skin-1-color-5; color: #fff !important;}
+.custom-skin-1 .open-small-chat:hover ,
+.custom-skin-1 .open-small-chat:focus ,
+.custom-skin-1 .open-small-chat:active ,
+.custom-skin-1 .open-small-chat.active {  background: darken(@custom-skin-1-color-5, 15%); }
+
+/*---- progress bar ----*/
+.custom-skin-1 .progress-bar {background: @custom-skin-1-color-5;}
+
+/*--- contact box ----*/
+.custom-skin-1 .contact-box a { color: inherit;}
+
+/*--- form input ----*/
+.custom-skin-1 .form-control:focus, .custom-skin-1 .single-line:focus {border-color: @custom-skin-1-color-6 !important;}
+

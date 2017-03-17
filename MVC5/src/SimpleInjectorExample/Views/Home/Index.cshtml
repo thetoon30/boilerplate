@@ -1,0 +1,237 @@
+﻿<div class="jumbotron">
+    <h1>Simple Injector Example</h1>
+</div>
+<div class="well">
+    <div class="container">
+        <h2>
+            <select id="ddlActorSinger" style="width: 300px; margin-left: 5px;">
+                <option id="actor" text="actor">actor</option>
+                <option id="singer" text="singer">singer</option>
+            </select>
+        </h2>
+        <table id="contentTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Movie</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<div class="well">
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs" style="margin-top: 10px;">
+        <li id="addPerson" class="active"><a href="#tabAddPerson" data-toggle="tab">Add</a></li>
+        <li id="updatePerson"><a href="#tabupdatePerson" data-toggle="tab">Edit/Delete</a></li>
+    </ul>
+
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="tabAddPerson">
+            <h3>ADD</h3>  
+            <table id="addContentTable" style="margin: 10px;">
+                <tr>
+                    <th style="text-align: right; width: 100px;">Firstname :</th>
+                    <td><input type="text" name="FirstName" id="addfirstnameTextbox" style="width: 300px; margin-left: 5px;"/></td>
+                </tr>
+                <tr>
+                    <th style="text-align: right; width: 100px;">Lastname :</th>
+                    <td><input type="text" name="LastName" id="addlastnameTextbox" style="width: 300px; margin-left: 5px;"/></td>
+                </tr>
+                <tr>
+                    <th style="text-align: right; width: 100px;">Movie/Genre :</th>
+                    <td><input type="text" name="MovieOrGenre" id="addaddressTextbox" style="width: 300px; margin-left: 5px;"/></td>
+                </tr>
+
+                <tr>
+                    <th style="width: 100px;"/>
+                    <td>
+                        <button type="button" class="btn btn-primary" id="addPersonButton" style="margin: 10px 5px;">Save</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tab-pane" id="tabupdatePerson">
+            <h3>EDIT / DELETE</h3>
+            <table id="editContentTable" style="margin: 10px;">
+                <tr>
+                    <th style="text-align: right; width: 100px;">Id :</th>
+                    <td><select id="ddlId" style="width: 300px; margin-left: 5px;"/></td>
+                </tr>
+                <tr>
+                    <th style="text-align: right; width: 100px;">Firstname :</th>
+                    <td><input type="text" name="FirstName" id="editfirstnameTextbox" style="width: 300px; margin-left: 5px;"/></td>
+                </tr>
+                <tr>
+                    <th style="text-align: right; width: 100px;">Lastname :</th>
+                    <td><input type="text" name="LastName" id="editlastnameTextbox" style="width: 300px; margin-left: 5px;"/></td>
+                </tr>
+                <tr>
+                    <th style="text-align: right; width: 100px;">Movie/Genre :</th>
+                    <td><input type="text" name="MovieName" id="editaddressTextbox" style="width: 300px; margin-left: 5px;"/></td>
+                </tr>
+                <tr>
+                    <th style="width: 100px;"/>
+                    <td>
+                        <button type="button" class="btn btn-primary" id="editPersonButton" style="margin: 10px 5px;">Update</button>
+                        <button type="button" class="btn btn-primary" id="deletePersonButton" style="margin: 10px 5px;">Delete</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $("#ddlId").on("change", function() {
+            loadResults();
+        });
+
+        $("#ddlActorSinger").on("change", function() {
+            loadTable();
+        });
+
+        $(function() {
+            $.getJSON('/api/' + document.getElementById("ddlActorSinger").value, function(persons) {
+                showContentsInTable(persons);
+            });
+        });
+
+        $('#addPersonButton').click(function() {
+            var person;
+            var ddlValue = document.getElementById("ddlActorSinger").value;
+
+            if (ddlValue == 'actor') {
+                person = {
+                    Id: $('#ddlId').val(),
+                    FirstName: $('#addfirstnameTextbox').val(),
+                    LastName: $('#addlastnameTextbox').val(),
+                    MovieName: $('#addaddressTextbox').val()
+                };
+            } else {
+                person = {
+                    Id: $('#ddlId').val(),
+                    FirstName: $('#addfirstnameTextbox').val(),
+                    LastName: $('#addlastnameTextbox').val(),
+                    Genre: $('#addaddressTextbox').val()
+                };
+            }
+
+            $.ajax({
+                url: '/api/' + ddlValue + '/add',
+                cache: false,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(person),
+                success: function(persons) {
+                    showContentsInTable(persons);
+                }
+            });
+            clearAddValues();
+        });
+
+        $('#editPersonButton').click(function() {
+            var person;
+            var ddlValue = document.getElementById("ddlActorSinger").value;
+
+            if (ddlValue == 'actor') {
+                person = {
+                    Id: $('#ddlId').val(),
+                    FirstName: $('#editfirstnameTextbox').val(),
+                    LastName: $('#editlastnameTextbox').val(),
+                    MovieName: $('#editaddressTextbox').val()
+                };
+            }
+            else {
+                person = {
+                    Id: $('#ddlId').val(),
+                    FirstName: $('#editfirstnameTextbox').val(),
+                    LastName: $('#editlastnameTextbox').val(),
+                    Genre: $('#editaddressTextbox').val()
+                };
+            }
+
+            $.ajax({
+                url: '/api/' + ddlValue + '/update',
+                cache: false,
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(person),
+                success: function(persons) {
+                    showContentsInTable(persons);
+                }
+            });
+        });
+
+        $('#deletePersonButton').click(function() {
+            $.ajax({
+                url: '/api/' + document.getElementById("ddlActorSinger").value + '/delete/' + document.getElementById("ddlId").value,
+                cache: false,
+                type: 'DELETE',
+                success: function(persons) {
+                    showContentsInTable(persons);
+                }
+            });
+        });
+
+        function showContentsInTable(persons) {
+            $("#contentTable > tbody tr").remove();
+            document.getElementById("ddlId").innerHTML = "";
+
+            $(persons).each(function(i, item) {
+                if (document.getElementById("ddlActorSinger").value == 'actor') {
+                    $("#contentTable > tbody").append('<tr><td>' + item.Id + '</td><td>' + item.MovieName + '</td><td>' + item.LastName + '</td><td>' + item.MovieName + '</td></tr>');
+                } else {
+                    $("#contentTable > tbody").append('<tr><td>' + item.Id + '</td><td>' + item.FirstName + '</td><td>' + item.LastName + '</td><td>' + item.Genre + '</td></tr>');
+                }
+                $('#ddlId').append("<option value='" + item.Id + "' text='" + item.Id + "' >" + item.Id + "</option>");
+            });
+            loadResults();
+        }
+
+        function loadTable() {
+            $(function() {
+                $.getJSON('/api/' + document.getElementById("ddlActorSinger").value, function(persons) {
+                    showContentsInTable(persons);
+                });
+            });
+        }
+
+        function loadResults() {
+            var id = document.getElementById("ddlId").value;
+            var ddlValue = document.getElementById("ddlActorSinger").value;
+
+            if (id == "") {
+                $('#editfirstnameTextbox').val('');
+                $('#editlastnameTextbox').val('');
+                $('#editaddressTextbox').val('');
+            }
+
+            $.getJSON('/api/' + ddlValue + '/' + id, function (person) {
+                document.getElementById("editfirstnameTextbox").value = person.FirstName;
+                document.getElementById("editlastnameTextbox").value = person.LastName;
+
+                if (ddlValue == 'actor') {
+                    document.getElementById("editaddressTextbox").value = person.MovieName;
+                } else {
+                    document.getElementById("editaddressTextbox").value = person.Genre;
+                }
+
+            });
+        }
+
+        function clearAddValues() {
+            $('#addfirstnameTextbox').val('');
+            $('#addlastnameTextbox').val('');
+            $('#addaddressTextbox').val('');
+    }
+</script>
+}
+
+
