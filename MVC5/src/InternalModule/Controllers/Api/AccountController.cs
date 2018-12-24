@@ -857,6 +857,41 @@ namespace InternalModule.Boilerplate.Controllers.Api
             });
         }
 
+        [HttpPost]
+        [Route("LoginJwt")]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> LoginJwt(LoginModel loginModel)
+        {
+            var user = await UserManager.FindAsync(loginModel.UserName, loginModel.Password);
+
+            if (user == null)
+            {
+                return Ok(new ResponseBase<JObject>
+                {
+                    statusCode = 400,
+                    userMessage = "Invalid email address or password.",
+                    devMessage = "Invalid email address or password.",
+                });
+            }
+
+            var token = TokenManager.GenerateToken(user.UserName);
+
+            return Ok(token);
+        }
+
+        [HttpGet]
+        [Route("Validate")]
+        public IHttpActionResult Validate(string token, string username)
+        {
+            bool exists = _userRepository.FindByName(username) != null;
+
+            if (!exists) { return Ok("Not Found"); }
+
+            string result = TokenManager.ValidateToken(token);
+
+            return Ok(result);
+        }
+
         private async Task<JObject> GenerateLocalAccessTokenResponse(ApplicationUser user)
         {
             var tokenExpiration = TimeSpan.FromDays(1);
