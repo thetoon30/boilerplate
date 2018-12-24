@@ -31,6 +31,7 @@ using System.Dynamic;
 using InternalModule.Boilerplate.Models.ResponseMessage;
 using Microsoft.Owin.Security.DataProtection;
 using InternalModule.Boilerplate.Helpers;
+using Newtonsoft.Json.Linq;
 
 namespace InternalModule.Boilerplate.Controllers.Api
 {
@@ -815,6 +816,69 @@ namespace InternalModule.Boilerplate.Controllers.Api
                 userMessage = "Success",
                 statusCode = 200
             });
+        }
+
+        // POST api/Account/Login
+        [HttpPost]
+        [Route("Login")]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> Login(LoginModel loginModel)
+        {
+            var user = await UserManager.FindAsync(loginModel.UserName, loginModel.Password);
+            if (user == null)
+            {
+                return Ok(new ResponseBase<JObject>
+                {
+                    statusCode = 400,
+                    userMessage = "Invalid email address or password.",
+                    devMessage = "Invalid email address or password.",
+                });
+            }
+
+            var confirmed = await UserManager.IsEmailConfirmedAsync(user.Id);
+            if (confirmed == false)
+            {
+                return Ok(new ResponseBase<JObject>
+                {
+                    statusCode = 402,
+                    userMessage = "You need to confirm your email.",
+                    devMessage = "You need to confirm your email.",
+                });
+            }
+
+            var token = await GenerateLocalAccessTokenResponse(user);
+
+            return Ok(new ResponseBase<JObject>
+            {
+                statusCode = 200,
+                userMessage = "Success",
+                devMessage = "Success",
+                item = token
+            });
+        }
+
+        private async Task<JObject> GenerateLocalAccessTokenResponse(ApplicationUser user)
+        {
+            var tokenExpiration = TimeSpan.FromDays(1);
+
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager, OAuthDefaults.AuthenticationType);
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(UserManager, CookieAuthenticationDefaults.AuthenticationType);
+
+            AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+            Authentication.SignIn(properties, oAuthIdentity, cookiesIdentity);
+
+            var accessToken = Startup.OAuthOptions.AccessTokenFormat.Protect(ticket);
+
+            JObject tokenResponse = new JObject(
+                                        new JProperty("access_token", accessToken),
+                                        new JProperty("token_type", "bearer"),
+                                        new JProperty("expires_in", tokenExpiration.TotalSeconds.ToString()),
+                                        new JProperty("userName", user.UserName),
+                                        new JProperty(".issued", ticket.Properties.IssuedUtc.ToString()),
+                                        new JProperty(".expires", ticket.Properties.ExpiresUtc.ToString()));
+
+            return tokenResponse;
         }
 
         public static string RandomString(int length)
