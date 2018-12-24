@@ -56,6 +56,9 @@ namespace InternalModule.Boilerplate
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            //JWT Token
+            //config.MessageHandlers.Add(new TokenValidationHandler());
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
