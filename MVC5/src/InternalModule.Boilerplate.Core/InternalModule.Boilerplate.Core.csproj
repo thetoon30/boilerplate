@@ -166,6 +166,8 @@
     <Compile Include="Helper\PagedResult.cs" />
     <Compile Include="Helper\PushOnesignal.cs" />
     <Compile Include="Helper\PushParse.cs" />
+    <Compile Include="Helper\QueryableExtension\QueryableCondition.cs" />
+    <Compile Include="Helper\QueryableExtension\QueryableExtension.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />
     <Compile Include="Infrastructure\CoreEngine.cs" />
     <Compile Include="Infrastructure\DependencyManagement\ContainerManager.cs" />

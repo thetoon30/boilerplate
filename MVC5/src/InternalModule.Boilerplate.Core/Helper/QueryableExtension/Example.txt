@@ -1,0 +1,16 @@
+                var aaa = items.If(CountryName != null).where(a => a.Name == CountryName);
+                         
+
+                CountryModel model = new CountryModel()
+                {
+                    CountryName = viewModel.searchCountry,
+                    Start = viewModel.Start,
+                    Length = viewModel.Length,
+                    Order = viewModel.Order != null ? viewModel.Columns[viewModel.Order[0].column].name : null,
+                    Columns = viewModel.Order != null ? viewModel.Order[0].dir.ToLower() == "asc" : false,
+                };
+
+                                                .OrderBy(countryModel.Order, countryModel.Columns)
+                                                .Skip(countryModel.Start)
+                                                .Take(countryModel.Length)
+                                                .ToList();
