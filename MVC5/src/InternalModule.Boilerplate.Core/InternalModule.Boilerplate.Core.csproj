@@ -154,6 +154,7 @@
     <Compile Include="Helper\CustomFormDataStreamProvider.cs" />
     <Compile Include="Helper\EnumerableExtensions.cs" />
     <Compile Include="Helper\FileSystemUtility.cs" />
+    <Compile Include="Helper\HelperExcel.cs" />
     <Compile Include="Helper\IFileSystemUtility.cs" />
     <Compile Include="Helper\PagedResult.cs" />
     <Compile Include="Helper\PushOnesignal.cs" />
