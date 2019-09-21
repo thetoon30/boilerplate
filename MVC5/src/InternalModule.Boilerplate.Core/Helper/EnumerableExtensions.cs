@@ -32,5 +32,17 @@ namespace InternalModule.Boilerplate.Core.Helper
             list[indexB] = tmp;
             return list;
         }
+
+        //private IEnumerable<SomeList> MergeData(IEnumerable<SomeList1> source, IEnumerable<SomeList1> destination)
+        //{
+        //    var newDes = from a in destination
+        //                 select new SomeList
+        //                 {
+        //                     Id = a.Id,
+        //                     Name = a.Name
+        //                 };
+
+        //    return source.Union(newDes).GroupBy(x => new { x.Id, x.Name }).Select(x => x.First());
+        //}
     }
 }
