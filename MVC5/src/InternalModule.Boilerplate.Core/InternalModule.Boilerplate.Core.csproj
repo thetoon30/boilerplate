@@ -168,6 +168,11 @@
     <Compile Include="Helper\CustomFormDataStreamProvider.cs" />
     <Compile Include="Helper\EnumerableExtensions.cs" />
     <Compile Include="Helper\FileSystemUtility.cs" />
+    <Compile Include="Helper\FTP\FtpBase.cs" />
+    <Compile Include="Helper\FTP\ProtocolBase.cs" />
+    <Compile Include="Helper\FTP\ProtocolFTP.cs" />
+    <Compile Include="Helper\FTP\ProtocolFTPS.cs" />
+    <Compile Include="Helper\FTP\ProtocolSFTP.cs" />
     <Compile Include="Helper\HelperExcel.cs" />
     <Compile Include="Helper\HelperExcelChartColor.cs" />
     <Compile Include="Helper\IFileSystemUtility.cs" />
