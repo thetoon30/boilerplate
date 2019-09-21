@@ -181,6 +181,7 @@
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\Enrollment.cs" />
+    <Compile Include="Model\FileInf.cs" />
     <Compile Include="Model\Identity\IdentityModels.cs" />
     <Compile Include="Model\Onesignal\PlayerObject.cs" />
     <Compile Include="Model\ParseObject\InstallationObject.cs" />
